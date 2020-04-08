@@ -1,4 +1,4 @@
-import greenfoot.*;  
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Write a description of class Barrera here.
@@ -14,7 +14,8 @@ public class Barrera extends Construcciones
      */
     public void act() 
     {
-        
+     //solo se necesita el ente, las obstrucciones las reciben los otros objetos cuando tocan a esta, es una logica inversa
+     //para hacer mas comodo su programacion   
     }    
 
     

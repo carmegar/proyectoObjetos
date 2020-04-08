@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=world
+comment0.text=\n\ Write\ a\ description\ of\ class\ world\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=
+comment1.target=world()
+comment2.params=
+comment2.target=void\ contadorEnergiaProto()
+comment3.params=
+comment3.target=void\ contadorEnergiaTerran()
+comment4.params=
+comment4.target=void\ generarProtos()
+comment5.params=
+comment5.target=void\ generarTerran()
+numComments=6

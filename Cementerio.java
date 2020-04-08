@@ -1,4 +1,4 @@
-import greenfoot.*;  
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Write a description of class Cementerio here.
@@ -18,10 +18,11 @@ public class Cementerio extends Construcciones
     }  
     
     public void muerte(){
-        Actor muerte= this.getOneIntersectingObject(null);
-        if (muerte != null){
-           
-            getWorld().removeObject(muerte);            
+        Actor muerte = this.getOneIntersectingObject(null);
+        //si algun objeto toca el cementerio quiere decir que su vida o utilidad ya es inutil en la partida
+        //por lo tanto se elimina dem mapa
+        if (muerte != null){            
+            getWorld().removeObject(muerte);           
         }
     }
 }

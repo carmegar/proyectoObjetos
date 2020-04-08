@@ -1,4 +1,4 @@
-import greenfoot.*;  
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.List;
 /**
  * Write a description of class BaseDeCuracion here.
@@ -14,6 +14,8 @@ public class BaseDeCuracion extends Construcciones
      */
     public void act() 
     {
+        //solo se necesita el ente, las curaciones las reciben los otros objetos cuantocan a esta, es una logica inversa
+        //para hacer mas comodo su programacion
     } 
     
     

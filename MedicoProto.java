@@ -15,58 +15,103 @@ public class MedicoProto extends Protos
     public void act() 
     {
         super.act();
-        lastimarCurarConstructor();
-        lastimarCurarGuerrero();
+        curarConstructor();
+        curarGuerrero();
         curacionDeposito();
-        noTocarMinaDeOro();
+        ataqueGuerreroTerran();
+        ataqueConstructorTerran();
+        ataqueMedicoTerran();
+        noTocarMinaGas();
+        noTocarMinaOro();
     } 
 
+    //el medico inicia con 120 puntos de vida y los protos en 100, entonces 
+    //le damos 20 mas para que los medicos tengas su vida normal
     public MedicoProto(){
         setEnergia(20);
     }
 
-    public void lastimarCurarConstructor(){
-        Actor a = this.getOneIntersectingObject(ConstructorProto.class);
-
-        if (a != null){
-            int restaCura = (-20);
-            if(getEnergia() <= 0){
-                setLocation(0 ,0);
-
-            }
-            setEnergia(restaCura);
-        }
-    }
-
-    public void lastimarCurarGuerrero(){
-        Actor a = this.getOneIntersectingObject(GuerreroProto.class);
-        if (a != null){
-            int restaCura = (-20);
+    //daño que recibe el medico cuando cura el constructor
+    public void curarConstructor(){
+        Actor curar = this.getOneIntersectingObject(ConstructorProto.class);
+        if (curar != null){
+            int dañoCura = (-20);
+            //saber si el medico muere al curar
             if(getEnergia() <= 0){
                 setLocation(0 ,0);
             }
-            setEnergia(restaCura);
+            setEnergia(dañoCura);
         }
     }
-
+    
+    //daño que recibe el medico cuando cura al guerrero
+    public void curarGuerrero(){
+        Actor curar = this.getOneIntersectingObject(GuerreroProto.class);
+        if (curar != null){
+            int dañoCura = (-20);
+            //saber si el medico muere al curar
+            if(getEnergia() <= 0){
+                setLocation(0 ,0);
+            }
+            //cura normal
+            setEnergia(dañoCura);
+        }
+    }
+    //funcion para curar el deposito por parte del medico
     public void curacionDeposito(){
         Actor a = this.getOneIntersectingObject(Deposito.class);
         if (a != null){
-            int aumentoCura = 25;
+            int cura = 25;
+            //cura solo el valor restante para la maxima vidad del deposito
             if(getEnergia() < 160){
                 if(getEnergia()+25 > 160){
                     int x = (getEnergia()+25) - 160;
-                    aumentoCura = 25-x;
+                    cura = 25-x;
+                 //cura normal 
+                 setEnergia(cura);
                 }
-                setEnergia(aumentoCura);
             }
         }
     }
-
-
-    public void noTocarMinaDeOro(){
-        Actor a = this.getOneIntersectingObject(MinaDeOro.class);
-        if (a != null){
+    //ataque de guerrero terran a medico proto
+    public void ataqueGuerreroTerran(){
+        Actor Aguerrero = this.getOneIntersectingObject(GuerreroTerran.class);
+        if (Aguerrero != null){
+            int random = Greenfoot.getRandomNumber(100);
+            int daño = (70*random)/100;
+            setEnergia(-daño);
+        }
+    }
+    //ataque de contructor terran a medico proto  
+    public void ataqueConstructorTerran(){
+        Actor Aconst = this.getOneIntersectingObject(ConstructorTerran.class);
+        if (Aconst != null){
+            int random = Greenfoot.getRandomNumber(100);
+            int daño = (70*random)/100;
+            setEnergia(-daño);
+        }
+    }
+    //ataque de medico terran a medico proto
+    public void ataqueMedicoTerran(){
+        Actor Amedico = this.getOneIntersectingObject(MedicoTerran.class);
+        if (Amedico != null){
+            int valor = Greenfoot.getRandomNumber(100);
+            int daño = (70*valor)/100;
+            setEnergia(-daño);
+        }
+    }
+    //funcion para no tocar las minas de gas
+    public void noTocarMinaGas(){
+        Actor noTocar = this.getOneIntersectingObject(MinaDeGas.class);
+        if (noTocar != null){
+            turn(180);
+            move(5);
+        }
+    }
+    //funcion para no tocar las minas de horo
+    public void noTocarMinaOro(){
+        Actor noTocar = this.getOneIntersectingObject(MinaDeOro.class);
+        if (noTocar != null){
             turn(180);
             move(5);
         }
