@@ -10,19 +10,21 @@ public class Protos extends Actor
 {
 
     private int energia;
+    int asd = 0;
 
     /**
      * Act - do whatever the Protos wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() {
-        noTocarBaseCuraion();
         noTocarBarrera();
         noTocarDeposito();       
         mover();
         curacionDebaseDeCuracion();
         eliminacion();
         cambiarDireccionProto();
+        System.out.println(asd);
+        asd++;
 
     }
 
@@ -109,15 +111,6 @@ public class Protos extends Actor
             if(getEnergia() <= 0){
                 setLocation(0 ,0);
             }
-        }
-    }
-
-    //funcion para protos no base de curacion
-    public void noTocarBaseCuraion(){
-        Actor random = this.getOneIntersectingObject(BaseDeCuracion.class);
-        if (random != null){
-            turn(180);
-            move(5);
         }
     }
 

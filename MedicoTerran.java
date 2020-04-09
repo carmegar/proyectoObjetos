@@ -24,7 +24,10 @@ public class MedicoTerran extends Terran
         ataqueGuerreroProto();
         ataqueConstructorProto();
         ataqueMedicoProto();
-        
+        ataqueGuerreroZerg();
+        ataqueConstructorZerg();
+        ataqueMedicoZerg();
+        noTocarMinaDeGas();
     }    
 
     //el medico inicia con 120 puntos de vida y los terran en 100, entonces 
@@ -106,6 +109,43 @@ public class MedicoTerran extends Terran
             setEnergia(-daño);
         }
     }
+    
+    public void ataqueGuerreroZerg(){
+        Actor a = this.getOneIntersectingObject(GuerreroZerg.class);
+        if (a != null){
+            //daño que recibe el medico, cuando medico vs guerrero zerg
+            int random = Greenfoot.getRandomNumber(100);
+            int daño = (70*random)/100;
+            setEnergia(-daño);
+        }
+    }
 
+    public void ataqueConstructorZerg(){
+        Actor a = this.getOneIntersectingObject(ConstructorZerg.class);
+       if (a != null){
+           //daño que recibe el medico, cuando medico vs constructor zerg
+            int random = Greenfoot.getRandomNumber(100);
+            int daño = (48*random)/100;
+            setEnergia(-daño);
+        }
+    }
+
+    public void ataqueMedicoZerg(){
+        Actor a = this.getOneIntersectingObject(MedicoZerg.class);
+       if (a != null){
+           //daño que recibe el medico, cuando medico vs medico zerg
+            int random = Greenfoot.getRandomNumber(100);
+            int daño = (48*random)/100;
+            setEnergia(-daño);
+        }
+    }
+
+    public void noTocarMinaDeGas(){
+        Actor a = this.getOneIntersectingObject(MinaDeGas.class);
+        if (a != null){
+            turn(180);
+            move(5);
+        }
+    }
 }
 

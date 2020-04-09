@@ -10,19 +10,14 @@ public class Terran extends Actor
 {
 
     private int energia;
- 
-
     /**
      * Act - do whatever the Terran wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
     {
-        noTocarBaseCuraion();
         noTocarBarrera();
         noTocarDeposito();
-        noTocarMinaDeGas();
-        noTocarMinaDeOro();
         curacionDebaseDeCuracion();
         eliminacion();
         mover();
@@ -113,17 +108,6 @@ public class Terran extends Actor
 
     }
 
-    
-    
-    
-    public void noTocarBaseCuraion(){
-        Actor a = this.getOneIntersectingObject(BaseDeCuracion.class);
-        if (a != null){
-            turn(180);
-            move(5);
-        }
-    }
-
     public void noTocarBarrera(){
         Actor a = this.getOneIntersectingObject(Barrera.class);
         if (a != null){
@@ -134,22 +118,6 @@ public class Terran extends Actor
 
     public void noTocarDeposito(){
         Actor a = this.getOneIntersectingObject(Deposito.class);
-        if (a != null){
-            turn(180);
-            move(5);
-        }
-    }
-
-    public void noTocarMinaDeGas(){
-        Actor a = this.getOneIntersectingObject(MinaDeGas.class);
-        if (a != null){
-            turn(180);
-            move(5);
-        }
-    }
-
-    public void noTocarMinaDeOro(){
-        Actor a = this.getOneIntersectingObject(MinaDeOro.class);
         if (a != null){
             turn(180);
             move(5);

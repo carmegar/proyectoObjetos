@@ -21,8 +21,10 @@ public class MedicoProto extends Protos
         ataqueGuerreroTerran();
         ataqueConstructorTerran();
         ataqueMedicoTerran();
+        ataqueGuerreroZerg();
+        ataqueConstructorZerg();
+        ataqueMedicoZerg();
         noTocarMinaGas();
-        noTocarMinaOro();
     } 
 
     //el medico inicia con 120 puntos de vida y los protos en 100, entonces 
@@ -61,12 +63,12 @@ public class MedicoProto extends Protos
     public void curacionDeposito(){
         Actor a = this.getOneIntersectingObject(Deposito.class);
         if (a != null){
-            int cura = 25;
+            int cura = 20;
             //cura solo el valor restante para la maxima vidad del deposito
             if(getEnergia() < 160){
                 if(getEnergia()+25 > 160){
-                    int x = (getEnergia()+25) - 160;
-                    cura = 25-x;
+                    int x = (getEnergia()+20) - 160;
+                    cura = 20-x;
                  //cura normal 
                  setEnergia(cura);
                 }
@@ -100,6 +102,35 @@ public class MedicoProto extends Protos
             setEnergia(-daño);
         }
     }
+    
+    //ataque de guerrero Zerg a medico proto
+    public void ataqueGuerreroZerg(){
+        Actor Aguerrero = this.getOneIntersectingObject(GuerreroZerg.class);
+        if (Aguerrero != null){
+            int random = Greenfoot.getRandomNumber(100);
+            int daño = (70*random)/100;
+            setEnergia(-daño);
+        }
+    }
+    //ataque de contructor zerg a medico proto  
+    public void ataqueConstructorZerg(){
+        Actor Aconst = this.getOneIntersectingObject(ConstructorZerg.class);
+        if (Aconst != null){
+            int random = Greenfoot.getRandomNumber(100);
+            int daño = (48*random)/100;
+            setEnergia(-daño);
+        }
+    }
+    //ataque de medico zerg a medico proto
+    public void ataqueMedicoZerg(){
+        Actor Amedico = this.getOneIntersectingObject(MedicoZerg.class);
+        if (Amedico != null){
+            int valor = Greenfoot.getRandomNumber(100);
+            int daño = (48*valor)/100;
+            setEnergia(-daño);
+        }
+    }
+    
     //funcion para no tocar las minas de gas
     public void noTocarMinaGas(){
         Actor noTocar = this.getOneIntersectingObject(MinaDeGas.class);
@@ -108,13 +139,4 @@ public class MedicoProto extends Protos
             move(5);
         }
     }
-    //funcion para no tocar las minas de horo
-    public void noTocarMinaOro(){
-        Actor noTocar = this.getOneIntersectingObject(MinaDeOro.class);
-        if (noTocar != null){
-            turn(180);
-            move(5);
-        }
-    }
-
 }

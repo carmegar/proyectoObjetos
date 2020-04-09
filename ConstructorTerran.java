@@ -21,10 +21,13 @@ public class ConstructorTerran extends Terran
         curacionDeposito();
         entregarRecurso();
         recogerGas();
-        recogerOro();
         ataqueGuerreroProto();
         ataqueConstructorProto();
         ataqueMedicoProto();
+        ataqueGuerreroZerg();
+        ataqueConstructorZerg();
+        ataqueMedicoZerg();
+        noTocarBaseCuraion();
     }   
 
     //inicializa las variables
@@ -85,28 +88,6 @@ public class ConstructorTerran extends Terran
         }
     }
 
-    public void recogerOro(){
-        Actor recoger = this.getOneIntersectingObject(MinaDeOro.class);
-        if (recoger != null){
-            int valor = 30;
-            MinaDeOro mo = new MinaDeOro();
-            // si la mina de oro no tiene las 30 unidades de oro solo dara las que tenga 
-            //si no tiene  no entregara nada al constructor
-            if(mo.getCantidadMinaOro()>0){ 
-                //si la mina de oro tiene menos de 30 d oro, entonces solo entrega lo que tiene
-                if(mo.getCantidadMinaOro()-30 <0){
-                    int b = valor-(mo.getCantidadMinaOro()-30);
-                }
-                //recoge los 30 de oro
-                SetCantidadOroTerran(valor);
-            }
-             //si la mina no tiene oro, deja el mismo valor que tenia inicialmente  el constructor
-            if(mo.getCantidadMinaOro() == 0){
-                SetCantidadOroTerran(getCantidadOroTerran());       
-            }
-        }
-    }
-
     public void ataqueGuerreroProto(){
         Actor Aguerrero = this.getOneIntersectingObject(GuerreroProto.class);
         //daño que recibe el contructor, cuando se enfrenta contra el guerrero proto
@@ -134,6 +115,44 @@ public class ConstructorTerran extends Terran
             int valor = Greenfoot.getRandomNumber(100);
             int daño = (50*valor)/100;
             setEnergia(-daño);
+        }
+    }
+    
+    public void ataqueGuerreroZerg(){
+        Actor Aguerrero = this.getOneIntersectingObject(GuerreroZerg.class);
+        //daño que recibe el contructor, cuando se enfrenta contra el guerrero Zerg
+        if (Aguerrero != null){
+            int valor = Greenfoot.getRandomNumber(100);
+            int daño = (70*valor)/100;
+            setEnergia(-daño);
+        }
+    }
+
+    public void ataqueConstructorZerg(){
+        Actor Aconstr = this.getOneIntersectingObject(ConstructorZerg.class);
+        //daño que recibe el contructor, cuando se enfrenta contra el construtor Zerg
+         if (Aconstr != null){
+            int valor = Greenfoot.getRandomNumber(100);
+            int daño = (48*valor)/100;
+            setEnergia(-daño);
+        }
+    }
+
+    public void ataqueMedicoZerg(){
+        Actor Amedico = this.getOneIntersectingObject(MedicoZerg.class);
+        //daño que recibe el contructor, cuando se enfrenta contra el construtor Zerg
+        if (Amedico != null){
+            int valor = Greenfoot.getRandomNumber(100);
+            int daño = (48*valor)/100;
+            setEnergia(-daño);
+        }
+     }
+     
+     public void noTocarBaseCuraion(){
+        Actor a = this.getOneIntersectingObject(BaseDeCuracion.class);
+        if (a != null){
+            turn(180);
+            move(5);
         }
     }
 

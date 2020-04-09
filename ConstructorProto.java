@@ -23,17 +23,20 @@ public class ConstructorProto extends Protos
         curacionDeposito();
         entregarRecurso();
         recogerGas();
-        recogerOro();
         ataqueGuerreroTerran();
+        noTocarBaseCuraion();
         ataqueConstructorTerran();
         ataqueMedicoTerran();
+        ataqueGuerreroZerg();
+        ataqueConstructorZerg();
+        ataqueMedicoZerg();
     }    
 
     //inicializa las variables 
     public ConstructorProto(){
         cantidadOroProto = 0;
         cantidadGasProto = 0;
-        }
+    }
     
     //funcion para la curacion que recibe el contrustor por parte de su medico
     public void curacionMedico(){
@@ -58,14 +61,13 @@ public class ConstructorProto extends Protos
     public void curacionDeposito(){
         Actor cdeposito = this.getOneIntersectingObject(Deposito.class);
         if (cdeposito != null){
-            int cura = 25;
+            int cura = 20;
             //curacion del medico si el guerrero esta lastimado
             if(getEnergia() < 160){
                 //cura solo la vida faltante para su maxima, si su vida
-               //de mayor de 85
                 if(getEnergia()+25 > 160){
-                    int x = (getEnergia()+25) - 160;
-                    cura = 25-x;
+                    int x = (getEnergia()+20) - 160;
+                    cura = 20-x;
                 }
                 //curar normal
                 setEnergia(cura);
@@ -81,37 +83,11 @@ public class ConstructorProto extends Protos
         }
     }
 
-    //funcion para que el contructor recolecte el gas
+    //funcion para que el contructor recolecte el gas y lo convierta en energia
     public void recogerGas(){
         Actor recogerG = this.getOneIntersectingObject(MinaDeGas.class);
         if (recogerG != null){
-            setCantidadGasProto(50);            
-        }
-    }
-
-    //funcion para que el constrcutor recolecte el oro
-    public void recogerOro(){
-        Actor recogerO = this.getOneIntersectingObject(MinaDeOro.class);        
-        if (recogerO != null){
-            int xMina = recogerO.getX();
-            int yMina = recogerO.getY();
-            int valor = 30;
-            MinaDeOro mo = new MinaDeOro();
-            // si la mina de oro no tiene las 30 unidades de oro solo dara 
-            //las que tenga,si no tiene  no entregara nada al constructor
-            if(mo.getCantidadMinaOro()>0){ 
-                //revisa que tenga las 30 unidades de oro, si no las tiene que de las que tenga en el momento
-                if(mo.getCantidadMinaOro()-30 <0){
-                    int resultado = valor-(mo.getCantidadMinaOro()-30);
-                }
-                //recoger normal
-                setCantidadOroProto(valor);
-            } 
-            //si la mina no tiene nada, deja los valores de recursos que tenia el constructor
-            if(mo.getCantidadMinaOro() == 0){
-                setCantidadOroProto(getCantidadOroProto());       
-            }
-
+            setCantidadGasProto(25);            
         }
     }
 
@@ -144,7 +120,46 @@ public class ConstructorProto extends Protos
             setEnergia(-daño);
         }
     }
+    
+    public void ataqueGuerreroZerg(){
+        Actor Aguerrero = this.getOneIntersectingObject(GuerreroZerg.class);
+        //daño que recibe el contructor, cuando se enfrenta contra guerrero zerg
+         if (Aguerrero != null){
+            int valor = Greenfoot.getRandomNumber(100);
+            int daño = (70*valor)/100;
+            setEnergia(-daño);
+        }
+    }
 
+    public void ataqueConstructorZerg(){
+        Actor Aconstr = this.getOneIntersectingObject(ConstructorZerg.class);
+        //daño que recibe el contructor, cuando se enfrenta contra constructor zerg
+         if (Aconstr != null){
+            int valor = Greenfoot.getRandomNumber(100);
+            int daño = (48*valor)/100;
+            setEnergia(-daño);
+        }
+    }
+
+    public void ataqueMedicoZerg(){
+        Actor Amedico = this.getOneIntersectingObject(MedicoZerg.class);
+        //daño que recibe el contructor, cuando se enfrenta contra medico zerg
+         if (Amedico != null){
+            int valor = Greenfoot.getRandomNumber(100);
+            int daño = (48*valor)/100;
+            setEnergia(-daño);
+        }
+    }
+    
+    //funcion para protos no base de curacion
+    public void noTocarBaseCuraion(){
+        Actor random = this.getOneIntersectingObject(BaseDeCuracion.class);
+        if (random != null){
+            turn(180);
+            move(5);
+        }
+    }
+    
     public int getCantidadOroProto(){
         return cantidadOroProto;
     }

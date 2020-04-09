@@ -17,22 +17,22 @@ public class Letrero extends Actor
      */
     public void act() 
     {
-      DibujarLetrero();
+      Dibuja();
      }    
 
-     GreenfootImage imagen;
-     String mensaje;
+    GreenfootImage imagen;
+    String mensaje;
 
-    public Letrero( String mensaje)
+    public Letrero( String m)
     {
-        mensaje = mensaje;
-        imagen = new GreenfootImage(255, 155);
-        imagen.setColor(new Color(200,200,0,224));
+        mensaje = m;
+        imagen = new GreenfootImage(250, 150);
+        imagen.setColor(new Color(200,200,0,225));
         imagen.setFont(new Font("Verdana", 24));
-        DibujarLetrero();
+        Dibuja();
     }
 
-    public void DibujarLetrero()
+    public void Dibuja()
     {
         imagen.clear();
         imagen.drawString(mensaje , 20, 20);
