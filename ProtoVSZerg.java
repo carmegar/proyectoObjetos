@@ -43,12 +43,14 @@ public class ProtoVSZerg extends World
         addObject(d1,400,500);
         Barrera b1 = new Barrera();
         addObject(b1,800,50);
-        if(revisaArchivo() == false){
+        
             generarZerg();
             generarProtos();
             lcp = new ArrayList<ConstructorProto>();
             lcz = new ArrayList<ConstructorZerg>();
-        }
+
+        MinaCristal m2 = new MinaCristal();
+        addObject(m2,600,600);   
     }
     
     public boolean revisaArchivo(){

@@ -10,7 +10,6 @@ public class Protos extends Actor
 {
 
     private int energia;
-    int asd = 0;
 
     /**
      * Act - do whatever the Protos wants to do. This method is called whenever
@@ -23,9 +22,7 @@ public class Protos extends Actor
         curacionDebaseDeCuracion();
         eliminacion();
         cambiarDireccionProto();
-        System.out.println(asd);
-        asd++;
-
+        noTocarMinaC();
     }
 
     public void cambiarDireccionProto(){
@@ -139,5 +136,13 @@ public class Protos extends Actor
     public void setEnergia( int energia ){
         this.energia +=  energia;
     }
-
+    
+    
+    public void noTocarMinaC(){
+        Actor noTocar = this.getOneIntersectingObject(MinaCristal.class);
+        if (noTocar != null){
+            turn(180);
+            move(5);
+        }
+    }
 }

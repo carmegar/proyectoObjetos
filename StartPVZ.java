@@ -17,7 +17,7 @@ public class StartPVZ extends Botones
     {
         if(Greenfoot.mouseClicked(this)){
             try {
-                FileWriter writer = new FileWriter("PVZ.txt", true);
+                FileWriter writer = new FileWriter("pvz.txt");
                 writer.write("Datos del encuentro Protos vs Zerg");
                 writer.close();
             } catch (IOException e) {

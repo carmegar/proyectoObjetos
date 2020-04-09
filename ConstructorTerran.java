@@ -12,7 +12,7 @@ public class ConstructorTerran extends Terran
      * Act - do whatever the ConstructorTerran wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    private int cantidadOroTerran;
+    private int cantidadCristalTerran;
     private int cantidadGasTerran;
     public void act() 
     {
@@ -32,7 +32,7 @@ public class ConstructorTerran extends Terran
 
     //inicializa las variables
     public ConstructorTerran(){
-        cantidadOroTerran = 0;
+        cantidadCristalTerran = 0;
         cantidadGasTerran = 0;
     }
 
@@ -76,7 +76,7 @@ public class ConstructorTerran extends Terran
     public void entregarRecurso(){
         Actor entregar = this.getOneIntersectingObject(Deposito.class);
         if (entregar != null){
-            SetCantidadOroTerran(0);
+            SetCantidadC(0);
         }
     }
 
@@ -86,6 +86,36 @@ public class ConstructorTerran extends Terran
         if (recoger != null){
             SetCantidadGasTerran(50);
         }
+    }
+    
+    public void recogerCristal(){
+        Actor recoger = this.getOneIntersectingObject(MinaCristal.class);
+        if (recoger != null){
+            int valor = 30;
+            MinaCristal mo = new MinaCristal();
+            // si la mina de oro no tiene las 30 unidades de oro solo dara las que tenga 
+            //si no tiene  no entregara nada al constructor
+            if(mo.getCantidadC()>0){ 
+                //si la mina de oro tiene menos de 30 d oro, entonces solo entrega lo que tiene
+                if(mo.getCantidadC()-30 <0){
+                    int b = valor-(mo.getCantidadC()-30);
+                }
+                //recoge los 30 de oro
+                SetCantidadC(valor);
+            }
+             //si la mina no tiene oro, deja el mismo valor que tenia inicialmente  el constructor
+            if(mo.getCantidadC() == 0){
+                SetCantidadC(getCantidadC());       
+            }
+        }
+    }
+    
+    public int getCantidadC(){
+        return cantidadCristalTerran;
+    }
+    
+    public void SetCantidadC(int cant){
+        this.cantidadCristalTerran = cant;
     }
 
     public void ataqueGuerreroProto(){
@@ -154,14 +184,6 @@ public class ConstructorTerran extends Terran
             turn(180);
             move(5);
         }
-    }
-
-    public int getCantidadOroTerran(){
-        return cantidadOroTerran;
-    }
-
-    public void SetCantidadOroTerran(int cantidadOroTerran){
-        this.cantidadOroTerran = cantidadOroTerran;
     }
 
     public int getCantidadGasTerran(){

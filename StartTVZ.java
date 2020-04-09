@@ -17,7 +17,8 @@ public class StartTVZ extends Botones
     {
         if(Greenfoot.mouseClicked(this)){
             try {
-                FileWriter writer = new FileWriter("TVZ.txt", true);
+                System.out.println("Crea archivo");
+                FileWriter writer = new FileWriter("tvz.txt");
                 writer.write("Datos del encuentro Terran vs Zerg");
                 writer.close();
             } catch (IOException e) {

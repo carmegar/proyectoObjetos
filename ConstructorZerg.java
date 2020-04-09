@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class ConstructorZerg extends Zerg
 {
-    private int cantidadOroZerg;
+    private int cantidadCristalZerg;
     private int cantidadGasZerg;
     public void act() 
     {
@@ -17,6 +17,7 @@ public class ConstructorZerg extends Zerg
         curacionDeposito();
         entregarRecurso();
         recogerGas();
+        recogerCristal();
         ataqueGuerreroProto();
         ataqueConstructorProto();
         ataqueMedicoProto();
@@ -28,7 +29,7 @@ public class ConstructorZerg extends Zerg
 
     //inicializa las variables
     public ConstructorZerg(){
-        cantidadOroZerg = 0;
+        cantidadCristalZerg = 0;
         cantidadGasZerg = 0;
     }
 
@@ -73,7 +74,7 @@ public class ConstructorZerg extends Zerg
     public void entregarRecurso(){
         Actor entregar = this.getOneIntersectingObject(Deposito.class);
         if (entregar != null){
-            SetCantidadOroZerg(0);
+            SetCantidadC(0);
         }
     }
 
@@ -83,6 +84,36 @@ public class ConstructorZerg extends Zerg
         if (recoger != null){
             SetCantidadGasZerg(50);
         }
+    }
+    
+    public void recogerCristal(){
+        Actor recoger = this.getOneIntersectingObject(MinaCristal.class);
+        if (recoger != null){
+            int valor = 30;
+            MinaCristal mo = new MinaCristal();
+            // si la mina de oro no tiene las 30 unidades de oro solo dara las que tenga 
+            //si no tiene  no entregara nada al constructor
+            if(mo.getCantidadC()>0){ 
+                //si la mina de oro tiene menos de 30 d oro, entonces solo entrega lo que tiene
+                if(mo.getCantidadC()-30 <0){
+                    int b = valor-(mo.getCantidadC()-30);
+                }
+                //recoge los 30 de oro
+                SetCantidadC(valor);
+            }
+             //si la mina no tiene oro, deja el mismo valor que tenia inicialmente  el constructor
+            if(mo.getCantidadC() == 0){
+                SetCantidadC(getCantidadC());       
+            }
+        }
+    }
+    
+    public int getCantidadC(){
+        return cantidadCristalZerg;
+    }
+    
+    public void SetCantidadC(int cant){
+        this.cantidadCristalZerg = cant;
     }
 
     public void ataqueGuerreroProto(){
@@ -153,14 +184,6 @@ public class ConstructorZerg extends Zerg
             turn(180);
             move(5);
         }
-    }
-    
-    public int getCantidadOroZerg(){
-        return cantidadOroZerg;
-    }
-
-    public void SetCantidadOroZerg(int cantidadOroZerg){
-        this.cantidadOroZerg = cantidadOroZerg;
     }
 
     public int getCantidadGasZerg(){

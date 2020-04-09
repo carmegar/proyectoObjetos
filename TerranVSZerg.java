@@ -45,12 +45,14 @@ public class TerranVSZerg extends World
         addObject(d1,400,500);
         Barrera b1 = new Barrera();
         addObject(b1,800,50);
-        if(revisaArchivo() == false){
+        
             generarZerg();
             generarProtos();
             lct = new ArrayList<ConstructorTerran>(); 
             lcz = new ArrayList<ConstructorZerg>();
-        }
+            
+        MinaCristal m2 = new MinaCristal();
+        addObject(m2,600,600);   
     }
     
     public boolean revisaArchivo(){

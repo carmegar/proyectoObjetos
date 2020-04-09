@@ -46,12 +46,13 @@ public class ProtoVSTerran extends World
         addObject(d1,400,500);
         Barrera b1 = new Barrera();
         addObject(b1,800,50);
-        if(revisaArchivo() == false){
             generarTerran();
             generarProtos();
             lcp = new ArrayList<ConstructorProto>();
             lct = new ArrayList<ConstructorTerran>();
-        }
+            
+        MinaCristal m2 = new MinaCristal();
+        addObject(m2,600,600);        
     }
     
     public boolean revisaArchivo(){

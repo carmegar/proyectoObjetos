@@ -17,7 +17,7 @@ public class StartPVT extends Botones
     {
         if(Greenfoot.mouseClicked(this)){
             try {
-                FileWriter writer = new FileWriter("PVT.txt", true);
+                FileWriter writer = new FileWriter("pvt.txt");
                 writer.write("Datos del encuentro Protos vs Terran");
                 writer.close();
             } catch (IOException e) {
