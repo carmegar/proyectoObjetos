@@ -1,6 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.io.FileWriter;
-import java.io.IOException;
+
 /**
  * Write a description of class StartPVZ here.
  * 
@@ -16,13 +15,6 @@ public class StartPVZ extends Botones
     public void act() 
     {
         if(Greenfoot.mouseClicked(this)){
-            try {
-                FileWriter writer = new FileWriter("pvz.txt");
-                writer.write("Datos del encuentro Protos vs Zerg");
-                writer.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
             Greenfoot.setWorld(new NuevaPartida());
         }    
     }    

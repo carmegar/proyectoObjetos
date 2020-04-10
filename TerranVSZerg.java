@@ -1,10 +1,6 @@
 import greenfoot.*;  
 import java.util.ArrayList;
 import java.util.List;
-
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 /**
  * Write a description of class TerranVSZerg here.
  * 
@@ -26,8 +22,18 @@ public class TerranVSZerg extends World
     ArrayList<ConstructorZerg> lcz;
     ArrayList<GuerreroZerg> lgz;
     ArrayList<MedicoZerg> lmz;
-    List<ConstructorTerran> listCT;
     List<ConstructorZerg> listCZ;
+    List<GuerreroZerg> listGZ;
+    List<MedicoZerg> listMZ;
+    List<ConstructorTerran> listCT;
+    List<GuerreroTerran> listGT;
+    List<MedicoTerran> listMT;
+    
+    public void act() 
+    {
+        super.act();
+        contadorEnergia();
+    }
     
     public TerranVSZerg()
     {    
@@ -35,60 +41,75 @@ public class TerranVSZerg extends World
          super(1050, 700, 1);
         BaseDeCuracion bc = new BaseDeCuracion();
         addObject(bc, 580, 280);
-        StartTVZ s11 = new StartTVZ();
+        Start s11 = new Start();
         addObject(s11,100,100);
         Cementerio c = new Cementerio();
         addObject(c, 0, 0);
+        generarZerg();
+        generarProtos();
+        lct = new ArrayList<ConstructorTerran>(); 
+        lcz = new ArrayList<ConstructorZerg>();
         MinaDeGas m1 = new MinaDeGas();
-        addObject(m1,800,400);
+        addObject(m1,900,400);
         Deposito d1 = new Deposito();
-        addObject(d1,400,500);
+        addObject(d1,10,500);
+        MinaCristal m2 = new MinaCristal();
+        addObject(m2,303,650);        
         Barrera b1 = new Barrera();
         addObject(b1,800,50);
-        
-            generarZerg();
-            generarProtos();
-            lct = new ArrayList<ConstructorTerran>(); 
-            lcz = new ArrayList<ConstructorZerg>();
-            
-        MinaCristal m2 = new MinaCristal();
-        addObject(m2,600,600);   
-    }
-    
-    public boolean revisaArchivo(){
-        String linea = "";
-        int cntL = 0;
-        int c;
-        try {
-            FileReader reader = new FileReader("pvz.txt");
-            while ((c = reader.read()) != -1) {
-                if(c == 10){
-                    // Analiza linea
-                    cntL++;
-                    System.out.println(linea);
-                    
-                }
-                if((c != 10) && (c != 13)){
-                    linea = linea + (char)c;
-                }
-            }
-            if(cntL == 1){
-                System.out.println("Inicia de cero el mapa");
-                return false;
-            }
-            System.out.println(linea);
-            System.out.println(c);
-            reader.close();
- 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return true;
     }
     
     public void contadorEnergia(){
-        listCT = this.getObjects(ConstructorTerran.class); 
-        listCZ = this.getObjects(ConstructorZerg.class);
+        int xZ=0;
+        int pZ=0;
+        int kZ=0;
+        int xT=0;
+        int pT=0;
+        int kT=0;
+        int totalT;
+        int totalZ;
+        listCZ = getObjects(ConstructorZerg.class);
+        for(ConstructorZerg e : listCZ){
+            xZ += e.getEnergia(); 
+        }
+        listGZ = this.getObjects(GuerreroZerg.class);
+         for(GuerreroZerg e : listGZ){
+            pZ += e.getEnergia(); 
+        }
+        listMZ = this.getObjects(MedicoZerg.class);
+         for(MedicoZerg e : listMZ){
+            kZ += e.getEnergia(); 
+        }
+        totalZ = kZ+pZ+xZ;
+        System.out.print("Energia Zerg: ");
+        System.out.println(totalZ);
+        listCT = getObjects(ConstructorTerran.class);
+        for(ConstructorTerran e : listCT){
+            xT += e.getEnergia(); 
+        }
+        listGT = this.getObjects(GuerreroTerran.class);
+         for(GuerreroTerran e : listGT){
+            pT += e.getEnergia(); 
+        }
+        listMT = this.getObjects(MedicoTerran.class);
+         for(MedicoTerran e : listMT){
+            kT += e.getEnergia(); 
+        }
+        totalT = kT+pT+xT;
+        System.out.print("Energia Terrans: ");
+        System.out.println(totalT);
+        if((totalZ <= 0) && (totalZ < totalT)){
+          Letrero l1 = new Letrero("Ganador Terran");
+          addObject(l1, 600,400);
+          Letrero l2 = new Letrero("PULSAR START");
+          addObject(l2, 550,600);
+        }
+        if((totalT <= 0) && (totalT < totalZ)){
+          Letrero l1 = new Letrero("Ganador Zerg");
+          addObject(l1, 600,400);
+          Letrero l2 = new Letrero("PULSAR START");
+          addObject(l2, 550,600);
+        }
     }
 
     public void generarProtos(){

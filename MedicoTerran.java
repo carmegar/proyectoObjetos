@@ -28,6 +28,8 @@ public class MedicoTerran extends Terran
         ataqueConstructorZerg();
         ataqueMedicoZerg();
         noTocarMinaDeGas();
+        noTocarMinaCristal();
+        
     }    
 
     //el medico inicia con 120 puntos de vida y los terran en 100, entonces 
@@ -142,6 +144,14 @@ public class MedicoTerran extends Terran
 
     public void noTocarMinaDeGas(){
         Actor a = this.getOneIntersectingObject(MinaDeGas.class);
+        if (a != null){
+            turn(180);
+            move(5);
+        }
+    }
+
+    public void noTocarMinaCristal(){
+        Actor a = this.getOneIntersectingObject(MinaCristal.class);
         if (a != null){
             turn(180);
             move(5);

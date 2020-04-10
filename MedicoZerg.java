@@ -27,6 +27,7 @@ public class MedicoZerg extends Zerg
         ataqueConstructorTerran();
         ataqueMedicoTerran();
         noTocarMinaDeGas();
+        noTocarMinaCristal();
     }    
 
     //el medico inicia con 120 puntos de vida y los Zerg en 100, entonces 
@@ -139,6 +140,14 @@ public class MedicoZerg extends Zerg
     
     public void noTocarMinaDeGas(){
         Actor a = this.getOneIntersectingObject(MinaDeGas.class);
+        if (a != null){
+            turn(180);
+            move(5);
+        }
+    }
+
+    public void noTocarMinaCristal(){
+        Actor a = this.getOneIntersectingObject(MinaCristal.class);
         if (a != null){
             turn(180);
             move(5);

@@ -3,52 +3,53 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import javax.swing.JOptionPane;
 
 /**
- * Write a description of class MinaDeOro here.
+ * Write a description of class MinaCristal here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
 public class MinaCristal extends Construcciones
 {
-    private int cantidadC;
+    private int cantidadCristal;
 
     /**
-     * Act - do whatever the MinaDeOro wants to do. This method is called whenever
+     * Act - do whatever the MinaCristal wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
     {
         cristalTerran();
         cristalProto();
+        cristalZerg();
     }    
 
-    //iniciliza el roro que tendra la mina de oro
+    //iniciliza el crista que tendra la mina
     public MinaCristal(){
-        cantidadC = (100 + Greenfoot.getRandomNumber(300));
+        cantidadCristal = (100 + Greenfoot.getRandomNumber(300));
     }
 
-    public int getCantidadC(){
-        return cantidadC;
+    public int getCantidadCristal(){
+        return cantidadCristal;
     }
 
-    public void setCantidadC( int cantidadC ){
-        this.cantidadC -=  cantidadC;
+    public void setCantidadCristal( int cantidadCristal ){
+        this.cantidadCristal -=  cantidadCristal;
     }
     
-    //oro que tiene las minas de oro
+    //repartiendo el cristal de la mina
     public void cristalProto(){
         Actor cProto = this.getOneIntersectingObject(ConstructorProto.class);        
         if (cProto != null){          
-            int x = 35;
-            //oro que recoge el constructor proto
-            if(getCantidadC()>0){
-                //si el oro que tiene la mina es menor que se necesita entregar al constructor, entrega solo lo que tenga
-                if(getCantidadC()-35<0){
-                    int b = ( getCantidadC()-35 );
-                    x = 35 + (b); 
+            int x = Greenfoot.getRandomNumber(35);
+            //cristal que recoge el constructor proto
+            if(getCantidadCristal()>0){
+                //si el cristal que tiene la mina es menor que se necesita entregar al constructor, entrega solo lo que tenga
+                if(getCantidadCristal()-x<0){
+                    int b = ( getCantidadCristal()-x );
+                    x = x + (b); 
                 }
                 //entrega normal
-                setCantidadC(x);
+                setCantidadCristal(x);
             }               
         }
     }
@@ -56,15 +57,31 @@ public class MinaCristal extends Construcciones
     public void cristalTerran(){
         Actor a = this.getOneIntersectingObject(ConstructorTerran.class);
         if (a != null){
-            int x = 40;
-            //oro que recoge el constructor terran
-            if(getCantidadC()>0){
-                //si el oro que tiene la mina es menor que se necesita entregar al constructor, entrega solo lo que tenga
-                if(getCantidadC()-40<0){
-                    int b = ( getCantidadC()-40 );
-                    x = 40 + (b); 
+            int x = Greenfoot.getRandomNumber(35);
+            //cristal que recoge el constructor terran
+            if(getCantidadCristal()>0){
+                //si el cristal que tiene la mina es menor que se necesita entregar al constructor, entrega solo lo que tenga
+                if(getCantidadCristal()-x<0){
+                    int b = ( getCantidadCristal()-x );
+                    x = x + (b); 
                 }
-                setCantidadC(x);
+                setCantidadCristal(x);
+            }
+        }
+    }
+    
+    public void cristalZerg(){
+        Actor a = this.getOneIntersectingObject(ConstructorZerg.class);
+        if (a != null){
+            int x = Greenfoot.getRandomNumber(35);
+            //cristal que recoge el constructor zerg
+            if(getCantidadCristal()>0){
+                //si el cristal que tiene la mina es menor que se necesita entregar al constructor, entrega solo lo que tenga
+                if(getCantidadCristal()-x<0){
+                    int b = ( getCantidadCristal()-x );
+                    x = x + (b); 
+                }
+                setCantidadCristal(x);
             }
         }
     }

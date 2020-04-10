@@ -21,7 +21,7 @@ public class Zerg extends Actor
         curacionDebaseDeCuracion();
         eliminacion();
         cambiarDireccionZerg();
-        noTocarMinaC();
+
     }
     
     public int getEnergia(){
@@ -128,14 +128,6 @@ public class Zerg extends Actor
     public void noTocarDeposito(){
         Actor random = this.getOneIntersectingObject(Deposito.class);
         if (random != null){
-            turn(180);
-            move(5);
-        }
-    }
-    
-    public void noTocarMinaC(){
-        Actor noTocar = this.getOneIntersectingObject(MinaCristal.class);
-        if (noTocar != null){
             turn(180);
             move(5);
         }

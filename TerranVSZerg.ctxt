@@ -2,9 +2,9 @@
 comment0.target=TerranVSZerg
 comment0.text=\n\ Write\ a\ description\ of\ class\ TerranVSZerg\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
 comment1.params=
-comment1.target=TerranVSZerg()
+comment1.target=void\ act()
 comment2.params=
-comment2.target=boolean\ revisaArchivo()
+comment2.target=TerranVSZerg()
 comment3.params=
 comment3.target=void\ contadorEnergia()
 comment4.params=

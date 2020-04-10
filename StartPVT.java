@@ -1,6 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.ArrayList;
+import java.util.List;
 import java.io.FileWriter;
 import java.io.IOException;
+
 /**
  * Write a description of class StartPVT here.
  * 
@@ -19,6 +22,12 @@ public class StartPVT extends Botones
             try {
                 FileWriter writer = new FileWriter("pvt.txt");
                 writer.write("Datos del encuentro Protos vs Terran");
+                writer.write("\n\n");
+                writer.write("Energia\tX\tY\n");
+                writer.write("********************************\n");
+                writer.write("Protos\n");
+                writer.write("********************************\n");
+                
                 writer.close();
             } catch (IOException e) {
                 e.printStackTrace();

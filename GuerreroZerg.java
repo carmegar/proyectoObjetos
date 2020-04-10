@@ -25,6 +25,7 @@ public class GuerreroZerg extends Zerg
         ataqueMedicoTerran();
         noTocarBaseCuraion();
         noTocarMinaDeGas();
+        noTocarMinaCristal();
     }    
 
     //funcion para la curacion que recive el guerrero por parte de su medico 
@@ -53,9 +54,9 @@ public class GuerreroZerg extends Zerg
             //confima si el guerrero tiene daño
             if(getEnergia() < 160){
                 //revisa si las vida es mayor de 140, para curar lo que falta para completar su maxima vida
-                if(getEnergia()+15 > 160){
-                    int xvelor = (getEnergia()+20) - 160;
-                   cura = 20-xvelor;
+                if(getEnergia()+20 > 160){
+                    int xvalor = (getEnergia()+15) - 160;
+                   cura = 20-xvalor;
                 }
                 //cura normal
                 setEnergia(cura);
@@ -125,6 +126,14 @@ public class GuerreroZerg extends Zerg
     
     public void noTocarMinaDeGas(){
         Actor a = this.getOneIntersectingObject(MinaDeGas.class);
+        if (a != null){
+            turn(180);
+            move(5);
+        }
+    }
+
+    public void noTocarMinaCristal(){
+        Actor a = this.getOneIntersectingObject(MinaCristal.class);
         if (a != null){
             turn(180);
             move(5);

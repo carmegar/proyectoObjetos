@@ -22,7 +22,6 @@ public class Terran extends Actor
         eliminacion();
         mover();
         cambiarDireccionProto();
-        noTocarMinaC();
     } 
     
     public void cambiarDireccionProto(){
@@ -131,12 +130,5 @@ public class Terran extends Actor
 
     public void setEnergia( int energia ){
         this.energia += energia;
-    }
-    public void noTocarMinaC(){
-        Actor noTocar = this.getOneIntersectingObject(MinaCristal.class);
-        if (noTocar != null){
-            turn(180);
-            move(5);
-        }
     }
 }

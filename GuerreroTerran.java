@@ -24,6 +24,7 @@ public class GuerreroTerran extends Terran
         ataqueConstructorZerg();
         ataqueMedicoZerg();
         noTocarMinaDeGas();
+        noTocarMinaCristal();
         noTocarBaseCuraion();
     }    
 
@@ -54,8 +55,8 @@ public class GuerreroTerran extends Terran
             if(getEnergia() < 160){
                 //revisa si las vida es mayor de 140, para curar lo que falta para completar su maxima vida
                 if(getEnergia()+20 > 160){
-                    int xvalor = (getEnergia()+20) - 160;
-                   cura = 20-xvalor;
+                    int xvelor = (getEnergia()+20) - 160;
+                   cura = 20-xvelor;
                 }
                 //cura normal
                 setEnergia(cura);
@@ -125,6 +126,14 @@ public class GuerreroTerran extends Terran
     
     public void noTocarMinaDeGas(){
         Actor a = this.getOneIntersectingObject(MinaDeGas.class);
+        if (a != null){
+            turn(180);
+            move(5);
+        }
+    }
+
+    public void noTocarMinaCristal(){
+        Actor a = this.getOneIntersectingObject(MinaCristal.class);
         if (a != null){
             turn(180);
             move(5);

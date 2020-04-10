@@ -66,7 +66,8 @@ public class ConstructorProto extends Protos
             //curacion del medico si el guerrero esta lastimado
             if(getEnergia() < 160){
                 //cura solo la vida faltante para su maxima, si su vida
-                if(getEnergia()+25 > 160){
+               //de mayor de 85
+                if(getEnergia()+20 > 160){
                     int x = (getEnergia()+20) - 160;
                     cura = 20-x;
                 }
@@ -80,18 +81,18 @@ public class ConstructorProto extends Protos
     public void entregarRecurso(){
         Actor entregar = this.getOneIntersectingObject(Deposito.class);
         if (entregar != null){
-            SetCantidadC(0);
+            SetCantidadCristal(0);
         }
     }
 
-    //funcion para que el contructor recolecte el gas y lo convierta en energia
+    //funcion para que el contructor recolecte el gas
     public void recogerGas(){
         Actor recogerG = this.getOneIntersectingObject(MinaDeGas.class);
         if (recogerG != null){
-            setCantidadGasProto(25);            
+            setCantidadGasProto(50);            
         }
     }
-    
+
     public void recogerCristal(){
         Actor recoger = this.getOneIntersectingObject(MinaCristal.class);
         if (recoger != null){
@@ -99,27 +100,19 @@ public class ConstructorProto extends Protos
             MinaCristal mo = new MinaCristal();
             // si la mina de oro no tiene las 30 unidades de oro solo dara las que tenga 
             //si no tiene  no entregara nada al constructor
-            if(mo.getCantidadC()>0){ 
+            if(mo.getCantidadCristal()>0){ 
                 //si la mina de oro tiene menos de 30 d oro, entonces solo entrega lo que tiene
-                if(mo.getCantidadC()-30 <0){
-                    int b = valor-(mo.getCantidadC()-30);
+                if(mo.getCantidadCristal()-30 <0){
+                    int b = valor-(mo.getCantidadCristal()-30);
                 }
                 //recoge los 30 de oro
-                SetCantidadC(valor);
+                SetCantidadCristal(valor);
             }
              //si la mina no tiene oro, deja el mismo valor que tenia inicialmente  el constructor
-            if(mo.getCantidadC() == 0){
-                SetCantidadC(getCantidadC());       
+            if(mo.getCantidadCristal() == 0){
+                SetCantidadCristal(getCantidadCristal());       
             }
         }
-    }
-    
-    public int getCantidadC(){
-        return cantidadCristalProto;
-    }
-    
-    public void SetCantidadC(int cant){
-        this.cantidadCristalProto = cant;
     }
 
     public void ataqueGuerreroTerran(){
@@ -189,6 +182,14 @@ public class ConstructorProto extends Protos
             turn(180);
             move(5);
         }
+    }
+    
+    public int getCantidadCristal(){
+        return cantidadCristalProto;
+    }
+
+    public void SetCantidadCristal(int cantidadsCristalProto){
+        this.cantidadCristalProto = cantidadCristalProto;
     }
 
     public int getCantidadGasProto(){

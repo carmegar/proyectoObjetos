@@ -17,13 +17,12 @@ public class NuevaPartida extends World
     public NuevaPartida()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(1100, 600, 1); 
-        
-          NuevaPardidaPVT s1 = new NuevaPardidaPVT();
+        super(1100, 600, 1);  
+         NuevaPardidaPVT s1 = new NuevaPardidaPVT();
           addObject(s1,450,250);          
           NuevaPartidaPVZ s2 = new NuevaPartidaPVZ();
           addObject(s2,600,250);
-          NuevaPartidaPVZ s3 = new NuevaPartidaPVZ();
+          NuevaPartidaTVZ s3 = new NuevaPartidaTVZ();
           addObject(s3,750,250);
           Salir1 s11 = new Salir1();
           addObject(s11,600,450);

@@ -24,6 +24,7 @@ public class GuerreroProto extends Protos
         ataqueConstructorZerg();
         ataqueMedicoZerg();
         noTocarMinaDeGas();
+        noTocarMinaCristal();
         noTocarBaseCuraion();
     } 
     
@@ -32,12 +33,12 @@ public class GuerreroProto extends Protos
     public void curacionMedico(){
         Actor cmedico = this.getOneIntersectingObject(MedicoProto.class);
         if (cmedico != null){
-            int cura = 15;
+            int cura = 20;
             if(getEnergia() < 160){
                 //se cura la parte que falta para lograr la maxima vida del medico
-                if(getEnergia()+15 > 160){
+                if(getEnergia()+20 > 160){
                     int x = (getEnergia()+15) - 160;
-                    cura = 15-x;
+                    cura = 20-x;
                 }
                 setEnergia(cura);
             }
@@ -48,11 +49,11 @@ public class GuerreroProto extends Protos
     public void curacionDeposito(){
         Actor cdeposito = this.getOneIntersectingObject(Deposito.class);
         if (cdeposito != null){
-            int cura = 20;
+            int cura = 25;
             if(getEnergia() < 160){
                 if(getEnergia()+25 > 160){
-                    int valor = (getEnergia()+20) - 160;
-                    cura = 20-valor;
+                    int valor = (getEnergia()+25) - 160;
+                    cura = 25-valor;
                 }
                 setEnergia(cura);
             }
@@ -121,6 +122,15 @@ public class GuerreroProto extends Protos
     //funcion para que los guerreros proto no toquen las minas de gas
     public void noTocarMinaDeGas(){
         Actor noTocar = this.getOneIntersectingObject(MinaDeGas.class);
+        if (noTocar != null){
+            turn(180);
+            move(5);
+        }
+    }
+   
+    //funcion para que los guerreros proto no toquen las minas de oro
+    public void noTocarMinaCristal(){
+        Actor noTocar = this.getOneIntersectingObject(MinaCristal.class);
         if (noTocar != null){
             turn(180);
             move(5);

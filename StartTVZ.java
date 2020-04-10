@@ -1,6 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.io.FileWriter;
-import java.io.IOException;
+
 /**
  * Write a description of class StartTVZ here.
  * 
@@ -16,14 +15,6 @@ public class StartTVZ extends Botones
     public void act() 
     {
         if(Greenfoot.mouseClicked(this)){
-            try {
-                System.out.println("Crea archivo");
-                FileWriter writer = new FileWriter("tvz.txt");
-                writer.write("Datos del encuentro Terran vs Zerg");
-                writer.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
             Greenfoot.setWorld(new NuevaPartida());
         }    
     }    

@@ -1,5 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.ArrayList;
+import java.util.List;
 /**
  * Write a description of class Protos here.
  * 
@@ -10,6 +11,19 @@ public class Protos extends Actor
 {
 
     private int energia;
+    
+    ArrayList<ConstructorProto> lcp;
+    ArrayList<GuerreroProto> lgp;
+    ArrayList<MedicoProto> lmp;
+    ArrayList<ConstructorTerran> lct;
+    ArrayList<GuerreroTerran> lgt;
+    ArrayList<MedicoTerran> lmt;
+    List<ConstructorProto> listCP;
+    List<GuerreroProto> listGP;
+    List<MedicoProto> listMP;
+    List<ConstructorTerran> listCT;
+    List<GuerreroTerran> listGT;
+    List<MedicoTerran> listMT;
 
     /**
      * Act - do whatever the Protos wants to do. This method is called whenever
@@ -22,7 +36,6 @@ public class Protos extends Actor
         curacionDebaseDeCuracion();
         eliminacion();
         cambiarDireccionProto();
-        noTocarMinaC();
     }
 
     public void cambiarDireccionProto(){
@@ -136,13 +149,5 @@ public class Protos extends Actor
     public void setEnergia( int energia ){
         this.energia +=  energia;
     }
-    
-    
-    public void noTocarMinaC(){
-        Actor noTocar = this.getOneIntersectingObject(MinaCristal.class);
-        if (noTocar != null){
-            turn(180);
-            move(5);
-        }
-    }
+
 }

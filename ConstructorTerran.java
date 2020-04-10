@@ -21,13 +21,14 @@ public class ConstructorTerran extends Terran
         curacionDeposito();
         entregarRecurso();
         recogerGas();
+        recogerCristal();
         ataqueGuerreroProto();
         ataqueConstructorProto();
         ataqueMedicoProto();
         ataqueGuerreroZerg();
         ataqueConstructorZerg();
         ataqueMedicoZerg();
-        noTocarBaseCuraion();
+        noTocarBaseCuraion();;
     }   
 
     //inicializa las variables
@@ -76,7 +77,7 @@ public class ConstructorTerran extends Terran
     public void entregarRecurso(){
         Actor entregar = this.getOneIntersectingObject(Deposito.class);
         if (entregar != null){
-            SetCantidadC(0);
+            SetCantidadCristal(0);
         }
     }
 
@@ -87,7 +88,7 @@ public class ConstructorTerran extends Terran
             SetCantidadGasTerran(50);
         }
     }
-    
+
     public void recogerCristal(){
         Actor recoger = this.getOneIntersectingObject(MinaCristal.class);
         if (recoger != null){
@@ -95,27 +96,19 @@ public class ConstructorTerran extends Terran
             MinaCristal mo = new MinaCristal();
             // si la mina de oro no tiene las 30 unidades de oro solo dara las que tenga 
             //si no tiene  no entregara nada al constructor
-            if(mo.getCantidadC()>0){ 
+            if(mo.getCantidadCristal()>0){ 
                 //si la mina de oro tiene menos de 30 d oro, entonces solo entrega lo que tiene
-                if(mo.getCantidadC()-30 <0){
-                    int b = valor-(mo.getCantidadC()-30);
+                if(mo.getCantidadCristal()-30 <0){
+                    int b = valor-(mo.getCantidadCristal()-30);
                 }
                 //recoge los 30 de oro
-                SetCantidadC(valor);
+                SetCantidadCristal(valor);
             }
              //si la mina no tiene oro, deja el mismo valor que tenia inicialmente  el constructor
-            if(mo.getCantidadC() == 0){
-                SetCantidadC(getCantidadC());       
+            if(mo.getCantidadCristal() == 0){
+                SetCantidadCristal(getCantidadCristal());       
             }
         }
-    }
-    
-    public int getCantidadC(){
-        return cantidadCristalTerran;
-    }
-    
-    public void SetCantidadC(int cant){
-        this.cantidadCristalTerran = cant;
     }
 
     public void ataqueGuerreroProto(){
@@ -184,6 +177,14 @@ public class ConstructorTerran extends Terran
             turn(180);
             move(5);
         }
+    }
+
+    public int getCantidadCristal(){
+        return cantidadCristalTerran;
+    }
+
+    public void SetCantidadCristal(int cantidadCristalTerran){
+        this.cantidadCristalTerran = cantidadCristalTerran;
     }
 
     public int getCantidadGasTerran(){

@@ -25,6 +25,7 @@ public class MedicoProto extends Protos
         ataqueConstructorZerg();
         ataqueMedicoZerg();
         noTocarMinaGas();
+        noTocarMinaCristal();
     } 
 
     //el medico inicia con 120 puntos de vida y los protos en 100, entonces 
@@ -63,12 +64,12 @@ public class MedicoProto extends Protos
     public void curacionDeposito(){
         Actor a = this.getOneIntersectingObject(Deposito.class);
         if (a != null){
-            int cura = 20;
+            int cura = 25;
             //cura solo el valor restante para la maxima vidad del deposito
             if(getEnergia() < 160){
                 if(getEnergia()+25 > 160){
-                    int x = (getEnergia()+20) - 160;
-                    cura = 20-x;
+                    int x = (getEnergia()+25) - 160;
+                    cura = 25-x;
                  //cura normal 
                  setEnergia(cura);
                 }
@@ -139,4 +140,13 @@ public class MedicoProto extends Protos
             move(5);
         }
     }
+    //funcion para no tocar las minas de horo
+    public void noTocarMinaCristal(){
+        Actor noTocar = this.getOneIntersectingObject(MinaCristal.class);
+        if (noTocar != null){
+            turn(180);
+            move(5);
+        }
+    }
+
 }
