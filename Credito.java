@@ -20,11 +20,11 @@ public class Credito extends World
 
         Letrero l1 = new Letrero("Desarrolladores:");
         addObject(l1, 200,200);
-        Letrero l2 = new Letrero( "estu 1 ");
+        Letrero l2 = new Letrero( "Carlos Arturo Meza");
         addObject(l2, 200,275);
-        Letrero l3 = new Letrero( "estu 2");
+        Letrero l3 = new Letrero( "2182041");
         addObject(l3, 200,350);
-        Letrero l4 = new Letrero( "estu 3");
+        Letrero l4 = new Letrero( "Grupo K1");
         addObject(l4, 200,450);
         Salir s1 = new Salir();
         addObject(s1, 222, 555);
